@@ -1,0 +1,5 @@
+site_name: ESPHome Models
+
+plugins:
+  - techdocs-core
+  - kroki
