@@ -1,0 +1,6 @@
+# https://esphome.io/components/binary_sensor/status.html
+
+binary_sensor:
+  - platform: status
+    name: ${device_name} status
+    entity_category: diagnostic

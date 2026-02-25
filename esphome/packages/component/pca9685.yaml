@@ -1,0 +1,18 @@
+# PCA9685 12-bit PWM Driver
+# PCA9685 12-bit PWM driver uses I²C Bus for communication.
+#
+# @param image img/pca9685.jpg
+# @param link.documentation https://esphome.io/components/output/pca9685.html
+# @param config.frequency (required) The frequency to let the component drive all PWM outputs at. Must be in range from 24Hz to 1526Hz.
+# @param config.address (optional) The I²C address of the driver. This board uses I2C 7-bit address between 0x40-0x7F, selectable with jumpers.
+# @param config.id (optional) Use this if you have multiple PCA9685s connected at the same time.
+
+substitutions:
+  id: pca9685_0
+  address: GPIO22
+  frequency: "500"
+
+pca9685:
+  - id: ${id}
+    address: ${address}
+    frequency: ${frequency}

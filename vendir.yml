@@ -1,0 +1,57 @@
+apiVersion: vendir.k14s.io/v1alpha1
+kind: Config
+directories:
+  - path: esphome/components
+    contents:
+      - path: ehmtxv2
+        http:
+          url: https://github.com/lubeda/EspHoMaTriXv2/archive/refs/tags/v2025.5.1.zip
+          unpackArchive:
+            path: .
+        includePaths:
+          - EspHoMaTriXv2-2025.5.1/components/ehmtxv2/**/*
+        newRootPath: EspHoMaTriXv2-2025.5.1/components/ehmtxv2
+      - path: igrill
+        http:
+          url: https://github.com/bendikwa/esphome-igrill/archive/refs/tags/v1.3.zip
+          unpackArchive:
+            path: .
+        includePaths:
+          - esphome-igrill-1.3/components/igrill/**/*
+        newRootPath: esphome-igrill-1.3/components/igrill
+      - path: igrill_ble_listener
+        http:
+          url: https://github.com/bendikwa/esphome-igrill/archive/refs/tags/v1.3.zip
+          unpackArchive:
+            path: .
+        includePaths:
+          - esphome-igrill-1.3/components/igrill_ble_listener/**/*
+        newRootPath: esphome-igrill-1.3/components/igrill_ble_listener
+      - path: ping
+        http:
+          url: https://github.com/trombik/esphome-component-ping/archive/refs/tags/v1.2.0.zip
+          unpackArchive:
+            path: .
+        includePaths:
+          - esphome-component-ping-1.2.0/components/ping/**/*
+        newRootPath: esphome-component-ping-1.2.0/components/ping
+
+  - path: esphome/includes
+    contents:
+      - path: amg8833
+        http:
+          url: https://github.com/TheRealWaldo/AMG8833-ESPHOME/archive/refs/heads/main.zip
+          unpackArchive:
+            path: .
+        includePaths:
+          - AMG8833-ESPHOME-main/*.h
+          - AMG8833-ESPHOME-main/*.yaml
+        newRootPath: AMG8833-ESPHOME-main
+      - path: stemma_soil_sensor
+        http:
+          url: https://gist.github.com/cerebrate/92d607153f0fd2c0f62cbd8aeed9f6b9/archive/185d6d386e498f579dfedc6906275fe9b90c0924.zip
+          unpackArchive:
+            path: .
+        includePaths:
+          - 92d607153f0fd2c0f62cbd8aeed9f6b9-185d6d386e498f579dfedc6906275fe9b90c0924/*
+        newRootPath: 92d607153f0fd2c0f62cbd8aeed9f6b9-185d6d386e498f579dfedc6906275fe9b90c0924

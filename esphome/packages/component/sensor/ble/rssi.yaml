@@ -1,0 +1,9 @@
+# https://esphome.io/components/sensor/ble_rssi.html
+
+sensor:
+  - platform: ble_rssi
+    mac_address: ${device_mac}
+    name: RSSI
+    entity_category: diagnostic
+    device_class: signal_strength
+    unit_of_measurement: dB

@@ -1,0 +1,18 @@
+# https://esphome.io/components/sensor/max31865.html
+
+substitutions:
+  update_interval: 10s
+  temperature_id: temperature
+  temperature_name: ${name_prefix} temperature
+  cs_pin: ""
+  reference_resistance: 430 Ω
+  rtd_nominal_resistance: 100 Ω
+
+sensor:
+  - platform: max31865
+    id: ${temperature_id}
+    name: ${temperature_name}
+    cs_pin: ${cs_pin}
+    reference_resistance: ${reference_resistance}
+    rtd_nominal_resistance: ${rtd_nominal_resistance}
+    update_interval: ${update_interval}

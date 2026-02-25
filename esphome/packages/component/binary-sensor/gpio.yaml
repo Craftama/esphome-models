@@ -1,0 +1,15 @@
+substitutions:
+  sensor_id: button
+  sensor_name: ${name_prefix} button
+  sensor_pin: GPIO0
+
+binary_sensor:
+  - platform: gpio
+    id: ${sensor_id}
+    name: ${sensor_name}
+    pin:
+      number: ${sensor_pin}
+      mode:
+        input: true
+        pullup: true
+      inverted: true

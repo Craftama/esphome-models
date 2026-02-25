@@ -1,0 +1,14 @@
+# https://esphome.io/components/sensor/dallas_temp.html
+
+substitutions:
+  temperature_id: temperature
+  temperature_name: ${name_prefix} temperature
+  update_interval: 10s
+
+sensor:
+  - platform: dallas_temp
+    id: ${temperature_id}
+    name: ${temperature_name}
+    address: ${temperature_address}
+    unit_of_measurement: °C
+    update_interval: ${update_interval}

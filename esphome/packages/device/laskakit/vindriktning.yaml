@@ -1,0 +1,27 @@
+# https://github.com/LaskaKit/ESP-Vindriktning/blob/main/SW/ESPHome.yaml
+
+esp32:
+  board: nodemcu-32s
+  framework:
+    type: arduino
+
+i2c:
+  sda: 21
+  scl: 22
+  scan: true
+
+uart:
+  rx_pin: 16
+  tx_pin: 17
+  baud_rate: 9600
+
+switch:
+  - platform: gpio
+    pin: 12
+    id: fan
+    restore_mode: ALWAYS_ON
+    entity_category: config
+
+packages:
+  environ-1: !include { file: packages/component/sensor/i2c/scd4x.yaml }
+  environ-2: !include { file: packages/component/sensor/uart/pm1006.yaml }

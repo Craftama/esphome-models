@@ -1,0 +1,14 @@
+# https://esphome.io/components/i2c.html
+
+substitutions:
+  id: i2c_0
+  sda_pin: GPIO21
+  scl_pin: GPIO22
+  frequency: 50kHz
+
+i2c:
+  - id: ${id}
+    sda: ${sda_pin}
+    scl: ${scl_pin}
+    scan: true
+    frequency: ${frequency}

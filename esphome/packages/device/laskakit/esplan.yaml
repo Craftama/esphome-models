@@ -1,0 +1,16 @@
+# https://github.com/LaskaKit/ESPlan/blob/main/SW/esplan_esphome.yaml
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+ethernet:
+  type: LAN8720
+  mdc_pin: GPIO23
+  mdio_pin: GPIO18
+  clk:
+    mode: CLK_OUT
+    pin: GPIO17
+  phy_addr: 0
+  power_pin: GPIO5

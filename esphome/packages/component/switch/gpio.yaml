@@ -1,0 +1,23 @@
+# https://esphome.io/components/switch/gpio
+
+substitutions:
+  switch_id: switch_1
+  switch_name: ${name_prefix} switch
+  switch_pin: GPIO12
+  switch_icon: mdi:toggle-switch
+  switch_device_class: switch
+  switch_inverted: 'false'
+
+output:
+  - platform: gpio
+    id: ${switch_id}_out
+    pin: ${switch_pin}
+    inverted: ${switch_inverted}
+
+switch:
+  - platform: output
+    id: ${switch_id}
+    output: ${switch_id}_out
+    name: ${switch_name}
+    icon: ${switch_icon}
+    device_class: ${switch_device_class}

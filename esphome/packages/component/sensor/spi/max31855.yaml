@@ -1,0 +1,14 @@
+# https://esphome.io/components/sensor/max31855.html
+
+substitutions:
+  temperature_id: temperature
+  temperature_name: ${name_prefix} temperature
+  cs_pin: ""
+  update_interval: 10s
+
+sensor:
+  - platform: max31855
+    id: ${temperature_id}
+    name: ${temperature_name}
+    cs_pin: ${cs_pin}
+    update_interval: ${update_interval}

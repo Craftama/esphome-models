@@ -1,0 +1,13 @@
+# https://esphome.io/components/sensor/bh1750
+
+substitutions:
+  illuminance_id: illuminance
+  illuminance_name: ${name_prefix} illuminance
+  update_interval: 10s
+
+sensor:
+  - platform: bh1750
+    id: ${illuminance_id}
+    name: ${illuminance_name}
+    address: 0x23
+    update_interval: ${update_interval}

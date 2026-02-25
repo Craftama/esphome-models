@@ -1,0 +1,19 @@
+# https://esphome.io/components/output/ledc.html
+
+substitutions:
+  light_id: light_id
+  light_name: ${name_prefix} light
+  light_pin: GPIO4
+  light_channel: '2'
+
+output:
+  - platform: ledc
+    pin: ${light_pin}
+    channel: ${light_channel}
+    id: ${light_id}_out
+
+light:
+  - platform: monochromatic
+    id: ${light_id}
+    name: ${light_name}
+    output: ${light_id}_out

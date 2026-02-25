@@ -1,0 +1,30 @@
+# https://esphome.io/components/sensor/scd4x.html
+
+substitutions:
+  co2_id: co2
+  co2_name: ${name_prefix} CO2
+  temperature_id: temperature
+  temperature_name: ${name_prefix} temperature
+  humidity_id: humidity
+  humidity_name: ${name_prefix} humidity
+  update_interval: 10s
+
+sensor:
+  - platform: scd4x
+    co2:
+      id: ${co2_id}
+      name: ${co2_name}
+      accuracy_decimals: 0
+      unit_of_measurement: ppm
+      device_class: carbon_dioxide
+    temperature:
+      id: ${temperature_id}
+      name: ${temperature_name}
+      accuracy_decimals: 2
+      unit_of_measurement: °C
+    humidity:
+      id: ${humidity_id}
+      name: ${humidity_name}
+      accuracy_decimals: 2
+      unit_of_measurement: "%"
+    update_interval: ${update_interval}

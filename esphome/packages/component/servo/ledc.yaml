@@ -1,0 +1,28 @@
+# https://esphome.io/components/servo.html
+# https://esphome.io/components/output/ledc.html
+
+substitutions:
+  servo_pin: GPIO4
+  servo_id: servo_id
+  servo_name: servo
+  servo_category: ""
+
+output:
+  - platform: ledc
+    id: ${servo_id}_output
+    pin: ${servo_pin}
+    frequency: 50 Hz
+
+servo:
+  - id: ${servo_id}
+    output: ${servo_id}_output
+
+api:
+  services:
+    - service: ${servo_id}-control
+      variables:
+        level: float
+      then:
+        - servo.write:
+            id: ${servo_id}
+            level: !lambda 'return level / 100.0;'

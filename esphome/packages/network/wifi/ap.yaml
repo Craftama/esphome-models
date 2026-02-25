@@ -1,0 +1,6 @@
+wifi:
+  ap:
+    ssid: ${device_name}
+    password: ${wifi_password}
+
+captive_portal:

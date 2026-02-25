@@ -1,0 +1,7 @@
+# https://esphome.io/components/esp32.html
+
+substitutions:
+  board: nodemcu-32s
+
+esp32:
+  board: ${board}

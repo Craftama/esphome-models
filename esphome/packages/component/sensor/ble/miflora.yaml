@@ -1,0 +1,25 @@
+substitutions:
+  device_mac: aa:bb:cc:dd:ee:ff
+  device_name: MiFlora
+  temperature_name: ${device_name} temperature
+  moisture_name: ${device_name} moisture
+  illuminance_name: ${device_name} illuminance
+  conductivity_name: ${device_name} conductivity
+  battery_level_name: ${device_name} battery level
+
+# packages:
+#   ble-rssi: !include /packages/component/sensor/ble/rssi.yaml
+
+sensor:
+  - platform: xiaomi_hhccjcy01
+    mac_address: ${device_mac}
+    temperature:
+      name: ${temperature_name}
+    moisture:
+      name: ${moisture_name}
+    illuminance:
+      name: ${illuminance_name}
+    conductivity:
+      name: ${conductivity_name}
+    battery_level:
+      name: ${battery_level_name}

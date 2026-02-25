@@ -1,0 +1,14 @@
+# https://esphome.io/components/sensor/tsl2561
+
+substitutions:
+  illuminance_id: illuminance
+  illuminance_name: ${name_prefix} illuminance
+  illuminance_address: "0x39"
+  update_interval: 10s
+
+sensor:
+  - platform: tsl2561
+    id: ${illuminance_id}
+    name: ${illuminance_name}
+    address: ${illuminance_address}
+    update_interval: ${update_interval}

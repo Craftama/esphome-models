@@ -1,0 +1,8 @@
+# https://esphome.io/components/time/pcf8563
+
+substitutions:
+  time_id: time_0
+
+time:
+  - platform: pcf8563
+    id: ${time_id}

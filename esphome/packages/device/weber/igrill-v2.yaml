@@ -1,0 +1,75 @@
+substitutions:
+  update_interval: 30s
+  probe_1_name: probe 1 temperature
+  probe_1_disabled: "false"
+  probe_2_name: probe 2 temperature
+  probe_2_disabled: "false"
+  probe_3_name: probe 3 temperature
+  probe_3_disabled: "false"
+  probe_4_name: probe 4 temperature
+  probe_4_disabled: "false"
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+external_components:
+  - source:
+      type: local
+      path: /components
+    components:
+      - igrill
+      - igrill_ble_listener
+
+esp32_ble_tracker:
+
+ble_client:
+  - mac_address: ${igrill_mac}
+    id: igrill_device
+    on_connect:
+      then:
+        - binary_sensor.template.publish:
+            id: igrill_device_connection
+            state: ON
+    on_disconnect:
+      then:
+        - binary_sensor.template.publish:
+            id: igrill_device_connection
+            state: OFF
+
+sensor:
+  - platform: igrill
+    ble_client_id: igrill_device
+    update_interval: 30s
+    send_value_when_unplugged: "false"
+    unplugged_probe_value: 0
+    battery_level:
+      name: "battery level"
+      entity_category: diagnostic
+      device_class: battery
+      accuracy_decimals: 0
+      unit_of_measurement: "%"
+    temperature_probe1:
+      name: "${probe_1_name}"
+      accuracy_decimals: 2
+      unit_of_measurement: °C
+    temperature_probe2:
+      name: "${probe_2_name}"
+      accuracy_decimals: 2
+      unit_of_measurement: °C
+    temperature_probe3:
+      name: "${probe_3_name}"
+      accuracy_decimals: 2
+      unit_of_measurement: °C
+    temperature_probe4:
+      name: "${probe_4_name}"
+      accuracy_decimals: 2
+      unit_of_measurement: °C
+
+binary_sensor:
+  - platform: template
+    name: ${device_name} igrill device connection
+    id: igrill_device_connection
+    device_class: connectivity
+    entity_category: diagnostic

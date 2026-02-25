@@ -1,0 +1,37 @@
+# https://devices.esphome.io/devices/ESP32-CAM
+
+substitutions:
+  camera_name: ${name_prefix} camera
+  light_name: ${name_prefix} light
+  light_id: camera_light
+
+esphome:
+  platform: ESP32
+  board: esp32dev
+
+esp32_camera:
+  external_clock:
+    pin: GPIO0
+    frequency: 20MHz
+  i2c_pins:
+    sda: GPIO26
+    scl: GPIO27
+  data_pins: [GPIO5, GPIO18, GPIO19, GPIO21, GPIO36, GPIO39, GPIO34, GPIO35]
+  vsync_pin: GPIO25
+  href_pin: GPIO23
+  pixel_clock_pin: GPIO22
+  power_down_pin: GPIO32
+  resolution: 800x600
+  name: ${camera_name}
+  idle_framerate: 0.1fps
+
+output:
+  - platform: ledc
+    pin: GPIO4
+    channel: 2
+    id: ${light_id}
+
+light:
+  - platform: monochromatic
+    output: ${light_id}
+    name: ${light_name}

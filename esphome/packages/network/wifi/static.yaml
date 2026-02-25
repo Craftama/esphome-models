@@ -1,0 +1,18 @@
+substitutions:
+  network_subnet: 255.255.255.0
+
+esphome:
+  comment: "IP: ${network_address}"
+
+packages:
+  wifi-info: !include ../../../packages/component/text-sensor/wifi-info.yaml
+  wifi-signal: !include ../../../packages/component/sensor/wifi-signal.yaml
+
+wifi:
+  ssid: ${wifi_essid}
+  password: ${wifi_password}
+  min_auth_mode: WPA2
+  manual_ip:
+    static_ip: ${network_address}
+    subnet: ${network_subnet}
+    gateway: ${network_gateway}

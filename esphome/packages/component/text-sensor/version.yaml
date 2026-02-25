@@ -1,0 +1,6 @@
+# https://esphome.io/components/text_sensor/version.html
+
+text_sensor:
+  - platform: version
+    name: ${device_name} firmware
+    entity_category: diagnostic

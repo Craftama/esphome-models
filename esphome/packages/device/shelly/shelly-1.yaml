@@ -1,0 +1,27 @@
+# https://devices.esphome.io/devices/Shelly-1
+
+substitutions:
+  button_id: button
+  button_name: button
+  switch_id: relay
+  switch_name: relay
+  switch_icon: mdi:toggle-switch
+  switch_device_class: switch
+
+esphome:
+  platform: ESP8266
+  board: esp01_1m
+
+binary_sensor:
+  - platform: gpio
+    id: ${button_id}
+    name: ${button_name}
+    pin:
+      number: GPIO5
+
+
+switch:
+  - platform: gpio
+    id: ${switch_id}
+    name: ${switch_name}
+    pin: GPIO4

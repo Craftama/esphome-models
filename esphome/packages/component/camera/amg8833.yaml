@@ -1,0 +1,58 @@
+# https://github.com/TheRealWaldo/AMG8833-ESPHOME
+
+esphome:
+  includes:
+    - includes/amg8833/amg8833.h
+    - includes/amg8833/amg8833_camera.h
+    - includes/amg8833/amg8833_person_detected.h
+  libraries:
+    - "Wire"
+    - "SparkFun GridEYE AMG88 Library"
+
+text_sensor:
+  - platform: custom
+    lambda: |-
+      auto amg8833 = new AMG8833CameraComponent();
+      App.register_component(amg8833);
+      return {amg8833};
+    text_sensors:
+      - name: sensor pixels
+
+binary_sensor:
+  - platform: custom
+    lambda: |-
+      auto amg8833 = new AMG8833PersonDetectedComponent();
+      App.register_component(amg8833);
+      return {amg8833};
+    binary_sensors:
+      name: person detected
+      device_class: occupancy
+
+sensor:
+  - platform: custom
+    lambda: |-
+      auto amg8833 = new AMG8833Component();
+      App.register_component(amg8833);
+      return {amg8833->sensor_temperature, amg8833->max_temperature, amg8833->min_temperature, amg8833->avg_temperature, amg8833->min_index, amg8833->max_index};
+
+    sensors:
+      - name: temperature
+        unit_of_measurement: °C
+        device_class: temperature
+        accuracy_decimals: 2
+      - name: max temperature
+        unit_of_measurement: °C
+        device_class: temperature
+        accuracy_decimals: 2
+      - name: min temperature
+        unit_of_measurement: °C
+        device_class: temperature
+        accuracy_decimals: 2
+      - name: avg temperature
+        unit_of_measurement: °C
+        device_class: temperature
+        accuracy_decimals: 2
+      - name: min index
+        accuracy_decimals: 0
+      - name: max index
+        accuracy_decimals: 0

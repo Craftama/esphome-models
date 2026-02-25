@@ -1,0 +1,11 @@
+# https://esphome.io/components/deep_sleep.html
+
+substitutions:
+  id: deep_sleep_0
+  run_duration:
+  sleep_duration: 30min
+
+deep_sleep:
+  id: ${id}
+  run_duration: ${run_duration}
+  sleep_duration: ${sleep_duration}

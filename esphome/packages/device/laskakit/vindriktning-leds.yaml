@@ -1,0 +1,153 @@
+globals:
+  - id: max_brightness
+    type: float
+    restore_value: no
+    initial_value: "0.5"
+  - id: min_brightness
+    type: float
+    restore_value: no
+    initial_value: "0.1"
+
+esphome:
+  on_boot:
+    - light.turn_on:
+        id: status
+        brightness: 0%
+
+sensor:
+  - platform: homeassistant
+    id: sun_elevation
+    entity_id: sun.sun
+    attribute: elevation
+  - id: !extend pm
+    on_value:
+      then:
+        - if:
+            condition:
+              lambda: "return x < 30;"
+            then:
+              - light.addressable_set:
+                  id: status
+                  range_from: 0
+                  range_to: 0
+                  red: 0.0
+                  green: 1.0
+                  blue: 0.0
+                  color_brightness: !lambda |-
+                    return id(sun_elevation).state > 0 ? id(max_brightness) : id(min_brightness);
+            else:
+              - if:
+                  condition:
+                    lambda: "return x > 90;"
+                  then:
+                    - light.addressable_set:
+                        id: status
+                        range_from: 0
+                        range_to: 0
+                        red: 1.0
+                        green: 0.0
+                        blue: 0.0
+                        color_brightness: !lambda |-
+                          return id(sun_elevation).state > 0 ? id(max_brightness) : id(min_brightness);
+                  else:
+                    - light.addressable_set:
+                        id: status
+                        range_from: 0
+                        range_to: 0
+                        red: 1.0
+                        green: 0.72
+                        blue: 0.0
+                        color_brightness: !lambda |-
+                          return id(sun_elevation).state > 0 ? id(max_brightness) : id(min_brightness);
+  - id: !extend co2
+    on_value:
+      then:
+        - if:
+            condition:
+              lambda: "return x < 1000;"
+            then:
+              - light.addressable_set:
+                  id: status
+                  range_from: 1
+                  range_to: 1
+                  red: 0.0
+                  green: 1.0
+                  blue: 0.0
+                  color_brightness: !lambda |-
+                    return id(sun_elevation).state > 0 ? id(max_brightness) : id(min_brightness);
+            else:
+              - if:
+                  condition:
+                    lambda: "return x > 1500;"
+                  then:
+                    - light.addressable_set:
+                        id: status
+                        range_from: 1
+                        range_to: 1
+                        red: 1.0
+                        green: 0.0
+                        blue: 0.0
+                        color_brightness: !lambda |-
+                          return id(sun_elevation).state > 0 ? id(max_brightness) : id(min_brightness);
+                  else:
+                    - light.addressable_set:
+                        id: status
+                        range_from: 1
+                        range_to: 1
+                        red: 1.0
+                        green: 0.72
+                        blue: 0.0
+                        color_brightness: !lambda |-
+                          return id(sun_elevation).state > 0 ? id(max_brightness) : id(min_brightness);
+  - id: !extend humidity
+    on_value:
+      then:
+        - if:
+            condition:
+              lambda: "return x < 30;"
+            then:
+              - light.addressable_set:
+                  id: status
+                  range_from: 2
+                  range_to: 2
+                  red: 1.0
+                  green: 0.0
+                  blue: 0.0
+                  color_brightness: !lambda |-
+                    return id(sun_elevation).state > 0 ? id(max_brightness) : id(min_brightness);
+            else:
+              - if:
+                  condition:
+                    lambda: "return x > 60;"
+                  then:
+                    - light.addressable_set:
+                        id: status
+                        range_from: 2
+                        range_to: 2
+                        red: 0.0
+                        green: 0.0
+                        blue: 1.0
+                        color_brightness: !lambda |-
+                          return id(sun_elevation).state > 0 ? id(max_brightness) : id(min_brightness);
+                  else:
+                    - light.addressable_set:
+                        id: status
+                        range_from: 2
+                        range_to: 2
+                        red: 0.0
+                        green: 1.0
+                        blue: 0.0
+                        color_brightness: !lambda |-
+                          return id(sun_elevation).state > 0 ? id(max_brightness) : id(min_brightness);
+
+light:
+  - platform: neopixelbus
+    type: GRB
+    variant: WS2812
+    pin: GPIO25
+    num_leds: 3
+    id: status
+    restore_mode: ALWAYS_ON
+    method:
+      type: esp32_rmt
+      channel: 6

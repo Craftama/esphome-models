@@ -1,0 +1,16 @@
+# https://esphome.io/components/text_sensor/wifi_info
+
+text_sensor:
+  - platform: wifi_info
+    ssid:
+      name: ${device_name} SSID
+      entity_category: diagnostic
+    bssid:
+      name: ${device_name} BSSID
+      entity_category: diagnostic
+    ip_address:
+      name: ${device_name} IP address
+      entity_category: diagnostic
+    mac_address:
+      name: ${device_name} MAC address
+      entity_category: diagnostic

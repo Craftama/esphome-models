@@ -1,0 +1,18 @@
+# https://esphome.io/components/stepper/index.html#uln2003-component
+
+substitutions:
+  stepper_id: uln2003_stepper
+  max_speed: 250 steps/s
+  pin_a: D1
+  pin_b: D2
+  pin_c: D5
+  pin_d: D6
+
+stepper:
+  - platform: uln2003
+    id: ${stepper_id}
+    pin_a: ${pin_a}
+    pin_b: ${pin_b}
+    pin_c: ${pin_c}
+    pin_d: ${pin_d}
+    max_speed: ${max_speed}

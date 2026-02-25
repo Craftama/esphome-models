@@ -1,0 +1,29 @@
+substitutions:
+  wifi_network_1_essid: network1
+  wifi_network_1_password: password1
+  wifi_network_2_essid: network2
+  wifi_network_2_password: password2
+  wifi_network_3_essid: network3
+  wifi_network_3_password: password3
+  wifi_network_4_essid: network4
+  wifi_network_4_password: password4
+  wifi_network_5_essid: network5
+  wifi_network_5_password: password5
+
+packages:
+  wifi-info: !include ../../../packages/component/text-sensor/wifi-info.yaml
+  wifi-signal: !include ../../../packages/component/sensor/wifi-signal.yaml
+
+wifi:
+  min_auth_mode: WPA2
+  networks:
+    - ssid: ${wifi_network_1_essid}
+      password: ${wifi_network_1_password}
+    - ssid: ${wifi_network_2_essid}
+      password: ${wifi_network_2_password}
+    - ssid: ${wifi_network_3_essid}
+      password: ${wifi_network_3_password}
+    - ssid: ${wifi_network_4_essid}
+      password: ${wifi_network_4_password}
+    - ssid: ${wifi_network_5_essid}
+      password: ${wifi_network_5_password}

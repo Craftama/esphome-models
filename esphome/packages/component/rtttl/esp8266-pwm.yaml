@@ -1,0 +1,25 @@
+# https://esphome.io/components/rtttl.html
+
+substitutions:
+  rtttl_pin: GPIO16
+  rtttl_id: buzzer
+  rtttl_name: ${name_prefix} buzzer
+
+output:
+  - platform: esp8266_pwm
+    id: ${rtttl_id}_out
+    pin: ${rtttl_pin}
+
+rtttl:
+  output: ${rtttl_id}_out
+  on_finished_playback:
+    - logger.log: 'Playback ended.'
+
+api:
+  services:
+    - service: ${rtttl_name} play
+      variables:
+        song_str: string
+      then:
+        - rtttl.play:
+            rtttl: !lambda 'return song_str;'

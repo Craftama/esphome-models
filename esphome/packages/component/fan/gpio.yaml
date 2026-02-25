@@ -1,0 +1,21 @@
+# https://esphome.io/components/fan/binary.html
+
+substitutions:
+  fan_id: fan_id
+  fan_name: ${name_prefix} fan
+  fan_pin: GPIO12
+  fan_icon: mdi:fan
+  fan_inverted: 'false'
+
+output:
+  - platform: gpio
+    id: ${fan_id}_out
+    pin: ${fan_pin}
+    inverted: ${fan_inverted}
+
+fan:
+  - platform: binary
+    id: ${fan_id}
+    name: ${fan_name}
+    output: ${fan_id}_out
+    icon: ${fan_icon}

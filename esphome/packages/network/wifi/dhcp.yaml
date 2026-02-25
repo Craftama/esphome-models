@@ -1,0 +1,8 @@
+packages:
+  wifi-info: !include ../../../packages/component/text-sensor/wifi-info.yaml
+  wifi-signal: !include ../../../packages/component/sensor/wifi-signal.yaml
+
+wifi:
+  ssid: ${wifi_essid}
+  password: ${wifi_password}
+  min_auth_mode: WPA2

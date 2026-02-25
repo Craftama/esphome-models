@@ -1,0 +1,31 @@
+substitutions:
+  button_name: button
+  switch_name: relay
+  switch_icon: mdi:toggle-switch
+  switch_device_class: switch
+
+esphome:
+  platform: ESP8266
+  board: esp01_1m
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO0
+      mode: INPUT_PULLUP
+      inverted: True
+    id: button
+    name: ${button_name}
+    #on_press:
+    #  - switch.toggle: relay
+
+switch:
+  - platform: gpio
+    name: ${switch_name}
+    pin: GPIO12
+    id: relay
+
+status_led:
+  pin:
+    number: GPIO13
+    inverted: true

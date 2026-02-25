@@ -1,0 +1,18 @@
+# https://esphome.io/cookbook/bme280_environment.html
+
+substitutions:
+  dew_point_id: dew_point
+  dew_point_name: ${name_prefix} Dew point
+  temperature_id: temperature
+  humidity_id: humidity
+
+sensor:
+  - platform: template
+    id: ${dew_point_id}
+    name: ${dew_point_name}
+    lambda: |-
+      return (243.5*(log(id(${humidity_id}).state/100)+((17.67*id(${temperature_id}).state)/
+      (243.5+id(${temperature_id}).state)))/(17.67-log(id(${humidity_id}).state/100)-
+      ((17.67*id(${temperature_id}).state)/(243.5+id(${temperature_id}).state))));
+    unit_of_measurement: °C
+    icon: 'mdi:thermometer-alert'

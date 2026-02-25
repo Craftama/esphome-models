@@ -1,0 +1,21 @@
+# https://esphome.io/components/light/binary
+
+substitutions:
+  light_id: light_id
+  light_name: ${name_prefix} light
+  light_pin: GPIO12
+  light_icon: mdi:lightbulb
+  light_inverted: 'false'
+
+output:
+  - platform: gpio
+    id: ${light_id}_out
+    pin: ${light_pin}
+    inverted: ${light_inverted}
+
+light:
+  - platform: binary
+    id: ${light_id}
+    name: ${light_name}
+    output: ${light_id}_out
+    icon: ${light_icon}

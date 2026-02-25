@@ -1,0 +1,28 @@
+substitutions:
+  device_mac: aa:bb:cc:dd:ee:ff
+  device_name: VegTrug
+  temperature_name: ${device_name} temperature
+  moisture_name: ${device_name} moisture
+  illuminance_name: ${device_name} illuminance
+  conductivity_name: ${device_name} conductivity
+
+#packages:
+#  ble-rssi: !include /packages/component/sensor/ble/rssi.yaml
+
+sensor:
+  - platform: ble_rssi
+    mac_address: ${device_mac}
+    name: RSSI
+    entity_category: diagnostic
+    device_class: signal_strength
+    unit_of_measurement: dB
+  - platform: xiaomi_gcls002
+    mac_address: ${device_mac}
+    temperature:
+      name: ${temperature_name}
+    moisture:
+      name: ${moisture_name}
+    illuminance:
+      name: ${illuminance_name}
+    conductivity:
+      name: ${conductivity_name}

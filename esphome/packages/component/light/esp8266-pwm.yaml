@@ -1,0 +1,20 @@
+
+substitutions:
+  light_id: light_id
+  light_name: ${name_prefix} light
+  light_pin: GPIO4
+  light_inverted: "true"
+  light_category: ""
+
+output:
+  - platform: esp8266_pwm
+    id: ${light_id}_out
+    pin: ${light_pin}
+    inverted: ${light_inverted}
+
+light:
+  - platform: monochromatic
+    id: ${light_id}
+    name: ${light_name}
+    output: ${light_id}_out
+    entity_category: ${light_category}

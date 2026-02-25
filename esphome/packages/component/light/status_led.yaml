@@ -1,0 +1,14 @@
+# https://esphome.io/components/light/status_led
+
+substitutions:
+  light_pin: GPIO12
+  light_inverted: 'true'
+
+light:
+  - platform: status_led
+    id: status_light
+    name: ${device_name} status LED
+    pin:
+      number: ${light_pin}
+      inverted: ${light_inverted}
+    entity_category: diagnostic

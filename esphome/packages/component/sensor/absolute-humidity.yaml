@@ -1,0 +1,15 @@
+# https://esphome.io/components/sensor/absolute_humidity.html
+# https://esphome.io/cookbook/bme280_environment.html
+
+substitutions:
+  absolute_humidity_id: abs_humidity
+  absolute_humidity_name: ${name_prefix} Absolute humidity
+  temperature_id: temperature
+  humidity_id: humidity
+
+sensor:
+  - platform: absolute_humidity
+    id: ${absolute_humidity_id}
+    name: ${absolute_humidity_name}
+    temperature: ${temperature_id}
+    humidity: ${humidity_id}

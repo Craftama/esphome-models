@@ -1,0 +1,25 @@
+substitutions:
+  device_name: device
+  device_area: ""
+  friendly_name: ""
+  name_prefix: ""
+
+esphome:
+  name: ${device_name}
+  friendly_name: ${friendly_name}
+  area: ${device_area}
+
+api:
+  encryption:
+    key: ${api_key}
+
+ota:
+  - platform: esphome
+    password: ${ota_password}
+
+packages:
+  status: !include ../../packages/component/binary-sensor/status.yaml
+  version: !include ../../packages/component/text-sensor/version.yaml
+  #uptime: !include ../../packages/component/sensor/uptime.yaml
+  logger: !include ../../packages/component/logger.yaml
+  restart: !include ../../packages/component/button/restart.yaml

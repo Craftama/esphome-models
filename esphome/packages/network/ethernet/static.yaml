@@ -1,0 +1,14 @@
+substitutions:
+  network_subnet: 255.255.255.0
+
+packages:
+  ethernet-info: !include ../../../packages/component/text-sensor/ethernet-info.yaml
+
+esphome:
+  comment: "IP: ${network_address}"
+
+ethernet:
+  manual_ip:
+    static_ip: ${network_address}
+    subnet: ${network_subnet}
+    gateway: ${network_gateway}

@@ -1,0 +1,16 @@
+# https://esphome.io/components/sensor/pm1006.html
+
+substitutions:
+  pm_2_5_id: pm_2_5
+  pm_2_5_name: ${name_prefix} PM2.5
+  update_interval: 10s
+
+sensor:
+  - platform: pm1006
+    pm_2_5:
+      id: ${pm_2_5_id}
+      name: ${pm_2_5_name}
+      accuracy_decimals: 1
+      unit_of_measurement: "µg/m³"
+      device_class: pm25
+    update_interval: ${update_interval}

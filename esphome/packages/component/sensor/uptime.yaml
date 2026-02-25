@@ -1,0 +1,11 @@
+# https://esphome.io/components/sensor/uptime.html
+
+substitutions:
+  update_interval: 10s
+  sensor_name: ${device_name} Uptime
+
+sensor:
+  - platform: uptime
+    name: ${sensor_name}
+    update_interval: ${update_interval}
+    entity_category: diagnostic

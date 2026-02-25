@@ -1,0 +1,93 @@
+substitutions:
+  switch_1_name: relay 1
+  switch_1_icon: mdi:toggle-switch
+  switch_1_device_class: switch
+  switch_1_disabled: "false"
+  switch_2_name: relay 2
+  switch_2_icon: mdi:toggle-switch
+  switch_2_device_class: switch
+  switch_2_disabled: "false"
+  switch_3_name: relay 3
+  switch_3_icon: mdi:toggle-switch
+  switch_3_device_class: switch
+  switch_3_disabled: "false"
+  switch_4_name: relay 4
+  switch_4_icon: mdi:toggle-switch
+  switch_4_device_class: switch
+  switch_4_disabled: "false"
+  blue_led_name: blue LED
+
+esp8266:
+  board: esp8285
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO0
+      mode:
+        input: true
+        pullup: true
+      inverted: true
+    name: button 1
+  - platform: gpio
+    pin:
+      number: GPIO9
+      mode:
+        input: true
+        pullup: true
+      inverted: true
+    name: button 2
+  - platform: gpio
+    pin:
+      number: GPIO10
+      mode:
+        input: true
+        pullup: true
+      inverted: true
+    name: button 3
+  - platform: gpio
+    pin:
+      number: GPIO14
+      mode:
+        input: true
+        pullup: true
+      inverted: true
+    name: button 4
+
+switch:
+  - platform: gpio
+    name: ${switch_1_name}
+    icon: ${switch_1_icon}
+    disabled_by_default: ${switch_1_disabled}
+    device_class: ${switch_1_device_class}
+    pin: GPIO12
+  - platform: gpio
+    name: ${switch_2_name}
+    icon: ${switch_2_icon}
+    disabled_by_default: ${switch_2_disabled}
+    device_class: ${switch_2_device_class}
+    pin: GPIO5
+  - platform: gpio
+    name: ${switch_3_name}
+    icon: ${switch_3_icon}
+    disabled_by_default: ${switch_3_disabled}
+    device_class: ${switch_3_device_class}
+    pin: GPIO4
+  - platform: gpio
+    name: ${switch_4_name}
+    icon: ${switch_4_icon}
+    disabled_by_default: ${switch_4_disabled}
+    device_class: ${switch_4_device_class}
+    pin: GPIO15
+
+output:
+  - platform: esp8266_pwm
+    id: blue_led
+    pin: GPIO13
+    inverted: true
+
+light:
+  - platform: monochromatic
+    name: ${blue_led_name}
+    output: blue_led
+    entity_category: diagnostic

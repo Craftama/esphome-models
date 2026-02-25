@@ -1,0 +1,45 @@
+# @param motor_id (optional) The ID prefix of the motor components.
+# @param motor_name (optional) The name of the motor.
+# @param power_pin (required) L293D pin 1 or pin 9: On or off.
+# @param acw_pin (required) L293D pin 2 or pin 10: Anticlockwise rotation.
+# @param cw_pin (required) L293D pin 7 or pin 15: Clockwise rotation.
+
+substitutions:
+  motor_id: motor
+  motor_name: ${name_prefix} motor
+  power_pin: GPIO4
+  cw_pin: GPIO5
+  acw_pin: GPIO6
+
+switch:
+  - platform: gpio
+    id: ${motor_id}_power
+    name: ${motor_name} power
+    pin: ${power_pin}
+  - platform: gpio
+    id: ${motor_id}_acw_rotation
+    name: ${motor_name} ACW rotation
+    pin: ${acw_pin}
+  - platform: gpio
+    id: ${motor_id}_cw_rotation
+    name: ${motor_name} CW rotation
+    pin: ${cw_pin}
+
+api:
+  services:
+    - service: ${motor_name}-stop
+      then:
+        - switch.turn_off: ${motor_id}_power
+        - switch.turn_off: ${motor_id}_cw_rotation
+        - switch.turn_off: ${motor_id}_acw_rotation
+    - service: ${motor_name}-rotate-acw
+      then:
+        - switch.turn_on: ${motor_id}_power
+        - switch.turn_off: ${motor_id}_cw_rotation
+        - switch.turn_on: ${motor_id}_acw_rotation
+    - service: ${motor_name}-rotate-cw
+      then:
+        - switch.turn_on: ${motor_id}_power
+        - switch.turn_on: ${motor_id}_cw_rotation
+        - switch.turn_off: ${motor_id}_acw_rotation
+   

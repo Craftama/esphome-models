@@ -1,0 +1,13 @@
+# https://esphome.io/components/sensor/wifi_signal.html
+
+substitutions:
+  update_interval: 10s
+  sensor_name: ${device_name} RSSI
+
+sensor:
+  - platform: wifi_signal
+    name: ${sensor_name}
+    update_interval: ${update_interval}
+    device_class: signal_strength
+    unit_of_measurement: dB
+    entity_category: diagnostic

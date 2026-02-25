@@ -1,0 +1,13 @@
+# https://esphome.io/components/time/sntp
+
+substitutions:
+  time_id: time_0
+  timezone: Europe/Prague
+  server: 0.pool.ntp.org
+
+time:
+  - platform: sntp
+    id: ${time_id}
+    timezone: 
+    servers:
+     - ${server}
