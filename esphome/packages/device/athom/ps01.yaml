@@ -4,7 +4,10 @@ esp8266:
   board: esp8285
 
 packages:
-  status: !include { file: /packages/component/light/status_led.yaml, vars: { light_pin: GPIO16 } }
+  status: !include
+    file: ../../component/light/status_led.yaml
+    vars:
+      light_pin: GPIO16
   #illuminance: !include { file: /packages/component/sensor/i2c/bh1750.yaml }
 
 i2c:
@@ -269,7 +272,6 @@ button:
       - button.press: restart_mmwave
       - delay: 1s
       - button.press: restart_esp
-
 #time:
 #  - platform: sntp
 #    id: my_time

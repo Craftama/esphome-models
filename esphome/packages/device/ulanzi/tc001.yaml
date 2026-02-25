@@ -20,11 +20,11 @@ external_components:
 
 animation:
   - id: animation_black
-    file: /images/black.gif
+    file: ../../../images/black.gif
 
 image:
   - id: image_black
-    file: /images/black.gif
+    file: ../../../images/black.gif
 
 globals:
   # aab = auto-adjustable brightness
@@ -52,11 +52,13 @@ esphome:
 
 esp32:
   board: esp32dev
+  framework:
+    type: esp-idf
 
 packages:
   # status-led: !include { file: /packages/component/light/status_led.yaml, vars: { light_pin: GPIO16 } }
   # environ: !include { file: /packages/component/sensor/i2c/sht3x.yaml }
-  battery: !include { file:  /packages/component/sensor/adc/battery.esp32.yaml }
+  battery: !include { file: /packages/component/sensor/adc/battery.esp32.yaml }
 
 switch:
   - platform: template

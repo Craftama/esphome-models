@@ -1,7 +1,12 @@
+api_key: EhejqKo8hVTV/GhGUBgNYmWgMIPrnFRClpeLW5bn2ew=
+
 network_gateway: "10.0.0.1"
 network_subnet: "255.255.255.0"
-ota_password: !secret ota_password
-web_password: !secret web_password
-wifi_essid: !secret wifi_essid
-wifi_password: !secret wifi_password
+ota_password: ota_password
+web_password: web_password
+wifi_essid: wifi_essid
+wifi_password: wifi_password
 device_area: "Test Area"
+device_name: test-device
+
+network_address: 10.0.0.100

@@ -1,10 +1,11 @@
+api_key: EhejqKo8hVTV/GhGUBgNYmWgMIPrnFRClpeLW5bn2ew=
+
 ota_password: ota_password
 web_password: web_password
 wifi_essid: wifi_essid
 wifi_password: wifi_password
 device_area: "Test Area"
 
-api_key: api_key
 device_name: test-device
 name_prefix: Test
 network_address: 10.0.0.100

@@ -1,0 +1,8 @@
+# Test stub for component/1wire.yaml
+substitutions:
+  <<: !include clusters/test_api_static.yaml
+packages:
+  base: !include packages/base/api.yaml
+  wifi: !include packages/network/wifi/static.yaml
+  device: !include packages/device/generic/esp32.yaml
+  test: !include packages/component/1wire.yaml

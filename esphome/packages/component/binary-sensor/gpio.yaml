@@ -1,5 +1,5 @@
 substitutions:
-  sensor_id: button
+  sensor_id: binary_sensor_button
   sensor_name: ${name_prefix} button
   sensor_pin: GPIO0
 

@@ -24,7 +24,7 @@ generate-package-docs:
 [doc('Compile a single ESPHome test config by test dir path (e.g. tests/component/sensor-i2c-scd4x).')]
 [group('tests')]
 test-config DIR:
-    docker run --rm \
+    @docker run --rm \
         -v "$(pwd)/{{DIR}}":/config \
         -v "$(pwd)/esphome/packages":/config/packages \
         -v "$(pwd)/esphome/components":/config/components \
@@ -32,7 +32,7 @@ test-config DIR:
         -v "$(pwd)/esphome/images":/config/images \
         -v "$(pwd)/esphome/includes":/config/includes \
         -v "$(pwd)/esphome/clusters":/config/clusters \
-        {{esphome_image}} compile /config/config.yaml
+        {{esphome_image}} config /config/config.yaml
 
 [doc('Compile all ESPHome test configs.')]
 [group('tests')]
@@ -40,6 +40,6 @@ test-all-configs:
     #!/usr/bin/env bash
     set -euo pipefail
     for dir in $(find tests -name 'config.yaml' -exec dirname {} \; | sort); do
-        echo "=== Testing $dir ==="
+        echo "Testing $dir/config.yaml..."
         just test-config "$dir"
     done

@@ -1,8 +1,0 @@
-# Test stub for component/logger.yaml
-substitutions:
-  <<: !include ../esphome/clusters/test_api_static.yaml
-packages:
-  base: !include ../esphome/packages/base/api.yaml
-  wifi: !include ../esphome/packages/network/wifi/static.yaml
-  device: !include ../esphome/packages/device/generic/esp32.yaml
-  test: !include ../../esphome/packages/component/logger.yaml
