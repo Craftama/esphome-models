@@ -2,6 +2,31 @@
 
 Reusable ESPHome packages for components, devices, and network configurations.
 
+## Usage
+
+Clone `esphome/packages` to your home directory: `git clone https://github.com/Craftama/esphome-models ~/esphome/packages`, then you can use ESPHome's substitution and packaging capabilites.
+
+### Example Configuration
+
+```yaml
+substitutions:
+  api_key: !secret api_key_device_esplan_test
+  device_name: test-area-esplan-test
+  name_prefix: Test Area
+  network_address: 10.0.0.1
+  <<: !include areas/test.yaml
+packages:
+  base: !include packages/base/api.yaml                         # Basic setup and connection to Home Assistant API
+  eth: !include packages/network/ethernet/static.yaml           # Ethernet connection with static IP
+  device: !include packages/device/laskakit/esplan.yaml         # Laskakit ESPlan device configuration
+  bus: !include
+    file: packages/component/i2c.yaml
+    vars: { sda_pin: GPIO33, scl_pin: GPIO32 }                  # Enables I2C bus
+  sensor: !include packages/component/sensor/i2c/scd4x.yaml     # Extra SCD4x CO2/temp/humidity sensor
+  ble-proxy: !include packages/network/bluetooth/pine64.yaml    # Extra BLE proxy configuration supporting PINE64 devices
+ ```
+
+
 ## Project Structure
 
 ```
