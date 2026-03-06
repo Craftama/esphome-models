@@ -6,6 +6,11 @@ esphome_image := "ghcr.io/esphome/esphome"
 default:
     @just --list
 
+[doc('Sync vendored dependencies from vendir.yml.')]
+[group('deps')]
+vendir-sync:
+    vendir sync
+
 [doc('Generate test stubs for all packages.')]
 [group('tests')]
 generate-tests:
